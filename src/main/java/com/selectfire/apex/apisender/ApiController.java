@@ -7,7 +7,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,6 +18,10 @@ import com.selectfire.apex.apisender.model.ResponseDataVo;
 @RestController
 public class ApiController {
 	
+	/**
+	 * rest template sample
+	 * @return
+	 */
 	@RequestMapping("/")
 	public ResponseDataVo hello() {
 		
@@ -33,4 +39,36 @@ public class ApiController {
 		 
 		 return null;
 	}
+	
+	/**
+	 * 검색버튼 api
+	 * rest api Response to client 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "searchDb/{id}", method = RequestMethod.GET)
+	  public String getDataToDb(@PathVariable("id") String id) {
+		
+		//Db 아이디 확인
+		//존재한다면 select
+		//존재하지 않는다면 api 로직
+	    
+		return "";
+	}
+	
+	/**
+	 * 새로고침 버튼 api
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "searchApi/{id}", method = RequestMethod.GET)
+	  public String getDataToApi(@PathVariable("id") String id) {
+		
+		//api search
+		//검색된 데이터 DB 저장
+		//data return
+		
+	    return "";
+	}
+
 }
