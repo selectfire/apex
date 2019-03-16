@@ -1,4 +1,4 @@
-package com.selectfire.apex.apisender.model;
+package com.selectfire.apex.model.apisender;
 
 import java.util.List;
 
