@@ -7,5 +7,5 @@ import com.selectfire.apex.model.Platform;
 
 @Repository
 public interface PlatformRepository extends JpaRepository<Platform, Integer> {
-
+	public Platform findById(int id);
 }

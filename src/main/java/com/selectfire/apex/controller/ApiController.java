@@ -8,9 +8,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -54,15 +54,13 @@ public class ApiController {
 		return null;
 	}
 
-	/**
-	 * 검색버튼 api rest api Response to client
-	 * 
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping(value = "users/{name}", method = RequestMethod.GET)
-	public User getDataToDb(@PathVariable("name") String name) {
-		User user = userService.get(name);
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public User get(@RequestParam(value = "name", required = true) String name,
+			@RequestParam(value = "platform", required = true) int platform,
+			@RequestParam(value = "updatable", required = false) boolean updatable) {
+
+		User user = userService.get(name, platform, updatable);
+
 		return user;
 	}
 }

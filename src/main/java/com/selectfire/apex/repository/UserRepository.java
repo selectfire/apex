@@ -8,4 +8,6 @@ import com.selectfire.apex.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	public User findByName(String name);
+
+	public User findByNameAndPlatformId(String name, int platformId);
 }
