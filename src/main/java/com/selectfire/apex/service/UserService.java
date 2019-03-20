@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.selectfire.apex.model.User;
+import com.selectfire.apex.repository.HistoryRepository;
 import com.selectfire.apex.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 public class UserService {
 
 	private UserRepository userRepository;
-
+	private HistoryRepository historyRepository;
 	private TrackerService trackerService;
 
 	@Autowired
-	public UserService(UserRepository userRepository, TrackerService trackerService) {
+	public UserService(UserRepository userRepository, HistoryRepository historyRepository,
+			TrackerService trackerService) {
 		this.userRepository = userRepository;
+		this.historyRepository = historyRepository;
 		this.trackerService = trackerService;
 	}
 
@@ -40,6 +43,7 @@ public class UserService {
 	}
 
 	public User get(String name, int platformId) {
+		System.out.println(historyRepository.getMax(name));
 		return userRepository.findByNameAndPlatformId(name, platformId);
 	}
 
